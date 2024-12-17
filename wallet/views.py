@@ -3,9 +3,13 @@ from rest_framework.permissions import IsAuthenticated
 from wallet.serializers import *
 from rest_framework import status
 from rest_framework.response import Response
+from django.shortcuts import render, HttpResponse
 
 
 # Create your views here.
+def index(request):
+    return HttpResponse('Hello World')
+
 class WalletView(APIView):
     permission_classes = [IsAuthenticated]
 
