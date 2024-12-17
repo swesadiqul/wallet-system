@@ -6,4 +6,5 @@ Markdown==3.7
 pillow==11.0.0
 PyJWT==2.10.0
 sqlparse==0.5.2
+typing_extensions==4.12.2
 tzdata==2024.2
