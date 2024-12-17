@@ -3,7 +3,7 @@ name: Deploy to PythonAnywhere
 on:
   push:
     branches:
-      - main
+      - main  # Trigger deployment on push to the main branch.
 
 jobs:
   deploy:
@@ -18,10 +18,10 @@ jobs:
       with:
         python-version: '3.9'
 
-    - name: Install dependencies
+    - name: Install PythonAnywhere CLI
       run: |
         pip install --upgrade pip
-        pip install pythonanywhere
+        pip install pythonanywhere  # Install the PythonAnywhere CLI tool.
 
     - name: Deploy Django App to PythonAnywhere
       env:
@@ -30,13 +30,12 @@ jobs:
       run: |
         # Set up the PythonAnywhere token
         export PYTHONANYWHERE_API_TOKEN=${PA_API_TOKEN}
-
+        
         # Install dependencies on PythonAnywhere
         pythonanywhere webapp set-virtualenv --user=${PA_USERNAME} /home/${PA_USERNAME}/myenv
-
+        
         # Apply migrations
         pythonanywhere manage.py migrate
-
+        
         # Reload the web app to pick up changes
         pythonanywhere webapp reload
-
